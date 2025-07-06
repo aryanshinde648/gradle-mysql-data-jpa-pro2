@@ -16,7 +16,6 @@ public class UserService {
     @Autowired
     private UserRepository userRepo;
 
-    @Autowired
     private User user;
 
     public UserDto saveUser(UserDto userDto) {
