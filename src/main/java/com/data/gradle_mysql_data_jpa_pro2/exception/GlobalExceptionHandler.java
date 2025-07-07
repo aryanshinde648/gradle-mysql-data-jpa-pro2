@@ -1,5 +1,8 @@
 package com.data.gradle_mysql_data_jpa_pro2.exception;
 
+import java.util.NoSuchElementException;
+
+import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -34,6 +37,18 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<String> handleNumberFormatException(NumberFormatException ex) {
         ResponseEntity<String> responseEntity = ResponseEntity.badRequest().body("NumberFormatException : " + ex.getMessage());
+        return responseEntity;
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleNotFoundException(NotFoundException ex) {
+        ResponseEntity<String> responseEntity = ResponseEntity.badRequest().body("NotFoundException : " + ex.getMessage());
+        return responseEntity;
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    public ResponseEntity<String> handleNoSuchElementException(NoSuchElementException ex) {
+        ResponseEntity<String> responseEntity = ResponseEntity.badRequest().body("NoSuchElementException : " + ex.getMessage());
         return responseEntity;
     }
 }

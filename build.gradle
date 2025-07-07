@@ -23,9 +23,6 @@ repositories {
 	mavenCentral()
 }
 
-ext {
-    mapstructVersion = "1.6.3"
-}
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
@@ -44,9 +41,6 @@ dependencies {
 
 	//mapstruct
 	implementation 'org.mapstruct:mapstruct:1.6.3'
-	testImplementation 'org.mapstruct:mapstruct:1.6.3'
-	compileOnly 'org.mapstruct:mapstruct:1.6.3'
-	runtimeOnly 'org.mapstruct:mapstruct:1.6.3'
     annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.3'
 }
 
