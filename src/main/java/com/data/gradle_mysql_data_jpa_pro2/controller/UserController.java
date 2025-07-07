@@ -39,13 +39,13 @@ public class UserController {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
-    @PatchMapping("/updatepartial/{id}")
-    public ResponseEntity<UserDto> updatePartialUser(@PathVariable Integer id,@RequestBody UserDto partialUser) {
+    @PatchMapping("/updatepartial")
+    public ResponseEntity<UserDto> updatePartialUser(@RequestHeader("id") Integer id,@RequestBody UserDto partialUser) {
         return ResponseEntity.ok(userService.updatePartialUser(id, partialUser));
     }
 
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
+    @DeleteMapping("/delete")
+    public ResponseEntity<Void> deleteUser(@RequestHeader("id") Integer id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
