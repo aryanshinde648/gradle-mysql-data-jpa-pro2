@@ -21,7 +21,6 @@ public class GradleMysqlDataJpaPro2Application {
 
 	@PostConstruct
 	public void init() {
-		userController.getUser();
 	}
 
 }

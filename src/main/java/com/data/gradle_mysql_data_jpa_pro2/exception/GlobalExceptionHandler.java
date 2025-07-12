@@ -51,4 +51,5 @@ public class GlobalExceptionHandler {
         ResponseEntity<String> responseEntity = ResponseEntity.badRequest().body("NoSuchElementException : " + ex.getMessage());
         return responseEntity;
     }
+
 }

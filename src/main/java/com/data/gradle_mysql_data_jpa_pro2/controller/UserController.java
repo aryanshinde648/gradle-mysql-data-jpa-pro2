@@ -51,10 +51,9 @@ public class UserController {
     }
 
     @GetMapping("/ex")
-    public ResponseEntity<String> throwsexception() {
-        String str = "123.45";
-        int n = Integer.parseInt(str);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<UserDto> getUserEmail(@RequestHeader("email") String email) {
+        UserDto userDto = userService.getUserByEmail(email);
+        return ResponseEntity.ok(userDto);
     }
     
 }

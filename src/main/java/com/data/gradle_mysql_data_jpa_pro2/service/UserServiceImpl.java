@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.data.gradle_mysql_data_jpa_pro2.dto.UserDto;
+import com.data.gradle_mysql_data_jpa_pro2.exception.CustomException;
 import com.data.gradle_mysql_data_jpa_pro2.mapper.UserConversion;
 import com.data.gradle_mysql_data_jpa_pro2.model.User;
 import com.data.gradle_mysql_data_jpa_pro2.repository.UserRepository;
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto updatePartialUser(Integer id,UserDto partialUser) {
+    public UserDto updatePartialUser(Integer id,UserDto partialUser) throws CustomException {
         user = userRepo.findById(id).orElse(null);
         UserDto exUser = userConversion.userToUserDto(user);
         if (exUser != null) {
@@ -64,14 +65,31 @@ public class UserServiceImpl implements UserService {
             }
          
             return saveUser(exUser);
+        } else {
+            throw new CustomException("User Not Found by / of id : " + id);
         }
-        return null;
     }
 
     @Override
     public UserDto getUserById(Integer id) {
         user = userRepo.findById(id).get();
         return userConversion.userToUserDto(user);
+    }
+
+    @Override
+    public UserDto getUserByEmail(String email) throws CustomException {
+
+        user = null;
+        user = userRepo.getByEmail(email).orElse(null);
+        
+        if (user == null) {
+            throw new CustomException("User not Found by email : " + email);
+        }
+        else {
+            UserDto userDto = userConversion.userToUserDto(user);
+            return userDto;
+        }
+
     }
 
 }
